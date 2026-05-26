@@ -5,6 +5,6 @@ module.exports = defineConfig({
   viewportWidth: 1920,
 
   e2e: {
-    baseUrl: 'https://tapsshop.pl',
+    baseUrl: 'https://tapsshop.pl/',
     },
 });
