@@ -10,23 +10,27 @@ const phoneField = '#billing_phone'
 const emailField = '#billing_email'
 const finishOrderButton = '#place_order'
 const countryDropdownPoland = 'Polska'
+const orderConfirmationMessage = 'header.entry-header h1.entry-title'
+const orderNumber = '.woocommerce-order-overview__order strong'
 
 class OrderPage{
     fillAllRequiredFields(){
-        cy.get(firstNameField).type(faker.name.firstName())
-        cy.get(lastNameField).type(faker.name.lastName())
-        cy.get(countryDropdown).select(countryDropdownPoland)
-        cy.get(addressField).type(faker.address.streetAddress())
-        cy.get(postalCodeField).type(faker.address.zipCode('##-###'))
-        cy.get(cityField).type(faker.address.city())
-        cy.get(phoneField).type(faker.phone.number('+48#########'))
+        cy.get(firstNameField).type(faker.person.firstName())
+        cy.get(lastNameField).type(faker.person.lastName())
+        cy.get(countryDropdown).select(countryDropdownPoland, {force: true})
+        cy.get(addressField).type(faker.location.streetAddress())
+        cy.get(postalCodeField).type(faker.location.zipCode('##-###'))
+        cy.get(cityField).type(faker.location.city())
+        cy.get(phoneField).type(faker.string.numeric(9))
         cy.get(emailField).type(faker.internet.email())
     }
     clickOrderFinishButton(){
         cy.get(finishOrderButton).click()
     }
-    // VerifyFinishedOrder(){
-    //     cy.get
-    // }
+    VerifyFinishedOrder(){
+        // cy.contains('Zamówienie otrzymane').should('exist')
+        cy.get(orderConfirmationMessage, {timeout: 10000}).should('contain.text', 'Zamówienie otrzymane')
+        cy.get(orderNumber).should('exist').and('not.be.empty')
+    }
 }
 export default OrderPage
