@@ -29,6 +29,7 @@ class OrderPage{
     }
     VerifyFinishedOrder(){
         // cy.contains('Zamówienie otrzymane').should('exist')
+        cy.url({timeout: 15000}).should('include', 'order-received')
         cy.get(orderConfirmationMessage, {timeout: 10000}).should('contain.text', 'Zamówienie otrzymane')
         cy.get(orderNumber).should('exist').and('not.be.empty')
     }

@@ -7,20 +7,24 @@ describe('Purchasing Process Tests', () => {
     const cartPage = new CartPage()
     const orderPage = new OrderPage()
 
+    beforeEach(function() {
+    cy.fixture('products.json').as('productsData')
+})
+
     it('Test Adding Product to Cart and then Deleting it', function () {
         homePage.visitPage()
-        homePage.addProductToCart()
+        homePage.addProductToCart(this.productsData.HoodieWithZipper)
         homePage.clickGoToCartFromProductButton()
-        cartPage.checkThatAddedProductIsInCart()
+        cartPage.checkThatAddedProductIsInCart(this.productsData.HoodieWithZipper)
         cartPage.removeItemFromCart()
         cartPage.checkThatCartIsEmpty()
     })
 
     it('Test Full Purchasing Process', function () {
         homePage.visitPage()
-        homePage.addProductToCart()
+        homePage.addProductToCart(this.productsData.HoodieWithZipper)
         homePage.clickGoToCartFromProductButton()
-        cartPage.checkThatAddedProductIsInCart()
+        cartPage.checkThatAddedProductIsInCart(this.productsData.HoodieWithZipper)
         cartPage.clickGoToPayment()
         orderPage.fillAllRequiredFields()
         orderPage.clickOrderFinishButton()

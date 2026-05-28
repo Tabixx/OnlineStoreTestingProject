@@ -1,0 +1,15 @@
+{
+    "Sunglasses": {
+        "locator": "a[data-product_id=\"49\"]",
+        "name": "Sunglasses"
+    },
+    "HoodieWithZipper": {
+        "locator": "a[data-product_id=\"51\"]",
+        "name": "Hoodie with Zipper"
+    },
+    "Polo": {
+        "locator": "a[data-product_id=\"53\"]",
+        "name": "Polo"
+    }
+
+}
