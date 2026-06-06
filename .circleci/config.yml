@@ -1,0 +1,12 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@6.1.0
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          name: run-authentication-tests
+          spec: cypress/e2e/AuthenticationTestSuite.cy.js
+      - cypress/run:
+          name: run-purchasing-tests
+          spec: cypress/e2e/PurchasingProcessTestSuite.cy.js
