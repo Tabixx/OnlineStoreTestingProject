@@ -6,7 +6,7 @@ workflows:
     jobs:
       - cypress/run:
           name: run-authentication-tests
-          spec: cypress/e2e/AuthenticationTestSuite.cy.js
+          cypress-command: npx cypress run --spec cypress/e2e/AuthenticationTestSuite.cy.js
       - cypress/run:
           name: run-purchasing-tests
-          spec: cypress/e2e/PurchasingProcessTestSuite.cy.js
+          cypress-command: npx cypress run --spec cypress/e2e/PurchasingProcessTestSuite.cy.js
